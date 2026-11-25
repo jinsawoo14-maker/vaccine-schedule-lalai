@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08a9b5"><title>ตารางนัดวัคซีนลูกน้อย | รพ.สต.ละลาย</title>
+<style>
+:root{--teal:#007f78;--cyan:#08b7d4;--ink:#173b4a;--muted:#637783;--bg:#eafaff;--line:#dce8ed;--white:#fff;--shadow:0 12px 35px #17495b12}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;color:var(--ink);background:linear-gradient(160deg,#b9edff 0,#effcff 36%,#fff4f7 100%);min-height:100vh}
+header{text-align:center;padding:34px 16px 20px}header .pill{display:inline-block;background:#ffffffb8;border:1px solid #ffffff;padding:7px 15px;border-radius:30px;color:var(--teal);font-weight:700;font-size:14px}h1{font-size:clamp(27px,5vw,42px);line-height:1.2;margin:15px 0 8px;color:#07556d}header p{margin:0;color:#45616f;font-size:16px}
+main{width:min(900px,calc(100% - 28px));margin:0 auto 40px}.panel{background:#ffffffed;border:1px solid #ffffff;border-radius:28px;padding:clamp(18px,4vw,32px);box-shadow:var(--shadow);margin:16px 0}.panel h2{font-size:24px;color:var(--teal);margin:0 0 18px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-weight:700;margin:0 0 7px}.field input{width:100%;font:inherit;font-size:18px;padding:14px;border:2px solid #d5e1e7;border-radius:16px;background:#fff;color:var(--ink)}button{border:0;border-radius:16px;padding:15px 20px;font:inherit;font-weight:800;cursor:pointer}.primary{width:100%;margin-top:16px;background:linear-gradient(100deg,#00a99d,#08aee0);color:white;font-size:20px;box-shadow:0 9px 20px #00a99d35}.secondary{background:#e8f7f7;color:#006f6b}.hint{font-size:13px;color:var(--muted);line-height:1.65;margin:12px 2px 0}.notice{padding:13px 15px;border-radius:14px;background:#fff8df;color:#76551a;font-size:14px;line-height:1.65;margin-top:14px}.result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}.result-head h2{margin-bottom:5px}.age{font-size:15px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{background:#f0fbfc;border:1px solid #dff2f4;border-radius:16px;padding:13px}.stat b{display:block;font-size:23px;color:var(--teal)}.stat span{font-size:12px;color:var(--muted)}.vaccine-list{display:grid;gap:12px}.vaccine{border:1px solid var(--line);border-radius:18px;padding:16px;background:#fff}.v-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.vaccine h3{margin:0 0 5px;font-size:18px;color:#145a66}.vaccine p{margin:5px 0;color:#526875;line-height:1.6;font-size:14px}.date{font-weight:800;white-space:nowrap;color:#087c78;text-align:right}.tag{display:inline-block;font-size:12px;border-radius:30px;padding:4px 9px;font-weight:700;margin-top:7px}.due{background:#fff0d5;color:#875500}.future{background:#e7f4ff;color:#17649a}.past{background:#fce8ec;color:#a33a54}.today{background:#dff8e9;color:#167442}.muted{color:#758791!important}.empty{padding:22px;text-align:center;background:#f4fbfc;border-radius:16px;color:#607681}.footer{text-align:center;color:#607681;font-size:12px;line-height:1.7;padding:8px 15px 30px}.hidden{display:none!important}
+@media(max-width:560px){.fields{grid-template-columns:1fr}.summary{grid-template-columns:repeat(3,1fr);gap:7px}.stat{padding:10px 8px}.stat b{font-size:19px}.stat span{font-size:11px}.v-top{display:block}.date{text-align:left;margin-top:8px}}
+@media print{body{background:#fff}.panel{box-shadow:none;border:0;padding:0}.entry,.actions,.footer .no-print,header p{display:none!important}main{width:100%;margin:0}header{padding:0 0 15px}.vaccine{break-inside:avoid}.panel#results{display:block!important}}
+</style></head>
+<body>
+<header><span class="pill">🏥 รพ.สต.ละลาย</span><h1>ตารางนัดวัคซีนลูกน้อย 💉</h1><p>คำนวณวันนัดจากวันเกิด · ไม่บันทึกข้อมูลเด็ก</p></header>
+<main>
+<section class="panel entry">
+<h2>🗓️ วันเกิดของลูก</h2>
+<div class="fields"><div class="field"><label for="birth">เลือกวันเดือนปีเกิด</label><input id="birth" type="date" max=""></div><div class="field"><label for="asof">คำนวณสถานะ ณ วันที่</label><input id="asof" type="date"></div></div>
+<button class="primary" id="calculate">ดูตารางนัดวัคซีน 💉</button>
+<p class="hint">ระบบใช้วันเกิดเพื่อคำนวณวันนัดเท่านั้น ข้อมูลจะอยู่ในหน้าจอนี้ชั่วคราว และไม่ส่งไปเก็บที่เซิร์ฟเวอร์ สถานะวันที่ผ่านแล้วไม่ได้แปลว่าเด็กขาดวัคซีน เพราะระบบไม่ได้เก็บประวัติการฉีด</p>
+<div class="notice">⚠️ ตารางนี้เป็นตัวช่วยคำนวณตามกำหนดการวัคซีนพื้นฐานปี 2569 ไม่ใช่การยืนยันว่าเด็กควรได้รับวัคซีนทุกชนิดในวันดังกล่าว ต้องตรวจสอบสมุดวัคซีน ประวัติการได้รับวัคซีน สุขภาพเด็ก และข้อบ่งชี้เฉพาะรายกับเจ้าหน้าที่ก่อนฉีดเสมอ</div>
+</section>
+<section class="panel hidden" id="results" aria-live="polite">
+<div class="result-head"><div><h2>📋 ตารางนัดวัคซีน</h2><div class="age" id="birthLabel"></div><div class="age" id="ageLabel"></div></div><div class="actions"><button class="secondary" id="print">พิมพ์ / บันทึก PDF</button><button class="secondary" id="reset">คำนวณใหม่</button></div></div>
+<div class="summary"><div class="stat"><b id="countAll">0</b><span>รายการนัดทั้งหมด</span></div><div class="stat"><b id="countPast">0</b><span>วันตามเกณฑ์ผ่านแล้ว</span></div><div class="stat"><b id="countFuture">0</b><span>นัดตั้งแต่วันนี้</span></div></div>
+<div class="vaccine-list" id="list"></div>
+<div class="notice">หมายเหตุ: หากเลยกำหนดหรือไม่แน่ใจว่าได้รับวัคซีนเข็มใดแล้ว อย่าเริ่มฉีดซ้ำหรือข้ามเข็มเอง ให้นำสมุดบันทึกสุขภาพแม่และเด็ก (สมุดสีชมพู) ไปให้เจ้าหน้าที่ประเมินและวางแผนวัคซีนต่อ</div>
+</section>
+<section class="panel"><h2>📚 ความรู้สำหรับผู้ปกครอง</h2><h3>ก่อนพาลูกมารับวัคซีน</h3><p>• นำสมุดบันทึกสุขภาพแม่และเด็ก (สมุดสีชมพู) มาทุกครั้ง</p><p>• แจ้งเจ้าหน้าที่หากเด็กเคยแพ้วัคซีน มีโรคประจำตัว หรือกำลังเจ็บป่วย</p><p>• แจ้งประวัติการได้รับวัคซีนจากสถานพยาบาลอื่นให้ครบถ้วน</p><h3>หลังรับวัคซีน</h3><p>• ปฏิบัติตามคำแนะนำของเจ้าหน้าที่ และสังเกตอาการเด็ก</p><p>• หากมีอาการรุนแรง เช่น หายใจลำบาก ซึมมาก หรือชัก ให้รีบไปโรงพยาบาลหรือโทร 1669</p></section>
+</main>
+<div class="footer">ข้อมูลกำหนดการ: กรมควบคุมโรค กระทรวงสาธารณสุข ปี 2569<br>เว็บไซต์ต้นแบบ รพ.สต.ละลาย · เวอร์ชันทดลอง 1.0<br><span class="no-print">ระบบไม่เก็บข้อมูลส่วนบุคคล และไม่แทนการประเมินโดยบุคลากรสาธารณสุข</span></div>
+<script>
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parse=s=>{if(!s)return null;const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12,0,0)};
+const addMonths=(date,months)=>{const d=new Date(date);const day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+months);const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(day,last));return d};
+const thaiDate=d=>new Intl.DateTimeFormat('th-TH',{day:'numeric',month:'long',year:'numeric'}).format(d);
+const diffAge=(birth,at)=>{let y=at.getFullYear()-birth.getFullYear(),m=at.getMonth()-birth.getMonth(),d=at.getDate()-birth.getDate();if(d<0){m--;d+=new Date(at.getFullYear(),at.getMonth(),0).getDate()}if(m<0){y--;m+=12}return `${y?y+' ปี ':''}${m?m+' เดือน ':''}${d} วัน`};
+const schedule=[
+{m:0,age:'แรกเกิด',name:'HB1 — วัคซีนป้องกันโรคตับอักเสบบี',note:'ควรให้เร็วที่สุดภายใน 24 ชั่วโมงหลังคลอด'},
+{m:0,age:'แรกเกิด',name:'BCG — วัคซีนป้องกันวัณโรค',note:'ฉีดให้เด็กก่อนออกจากโรงพยาบาล'},
+{m:1,age:'1 เดือน',name:'HB2 — วัคซีนป้องกันโรคตับอักเสบบี',note:'เฉพาะรายที่มารดาเป็นพาหะไวรัสตับอักเสบบี · ต้องให้เจ้าหน้าที่ตรวจสอบข้อบ่งชี้',conditional:true},
+{m:2,age:'2 เดือน',name:'DTP-HB-Hib1 — คอตีบ บาดทะยัก ไอกรน ตับอักเสบบี และฮิบ',note:'การให้วัคซีนชุดนี้ครั้งแรกควรให้ก่อนทารกอายุครบ 15 สัปดาห์'},
+{m:2,age:'2 เดือน',name:'IPV1 — วัคซีนโปลิโอชนิดฉีด ครั้งที่ 1',note:''},
+{m:2,age:'2 เดือน',name:'Rota1 — วัคซีนโรต้า ครั้งที่ 1',note:'อายุเริ่มและอายุสูงสุดในการให้ขึ้นกับชนิดผลิตภัณฑ์ ให้เจ้าหน้าที่ตรวจสอบ'},
+{m:4,age:'4 เดือน',name:'DTP-HB-Hib2 — วัคซีนรวม ครั้งที่ 2',note:'วัคซีนชุดนี้ควรได้รับครบตามข้อกำหนดอายุของแนวทาง'},
+{m:4,age:'4 เดือน',name:'IPV2 — วัคซีนโปลิโอชนิดฉีด ครั้งที่ 2',note:''},
+{m:4,age:'4 เดือน',name:'Rota2 — วัคซีนโรต้า ครั้งที่ 2',note:'จำนวนครั้งขึ้นกับชนิดผลิตภัณฑ์'},
+{m:6,age:'6 เดือน',name:'DTP-HB-Hib3 — วัคซีนรวม ครั้งที่ 3',note:'หากใช้ Rotarix ให้เพียง 2 ครั้ง ไม่ต้องให้ครั้งที่ 3; กำหนดอายุสูงสุดต้องตรวจสอบ'},
+{m:6,age:'6 เดือน',name:'OPV3 — วัคซีนโปลิโอชนิดรับประทาน ครั้งที่ 3',note:''},
+{m:6,age:'6 เดือน',name:'Rota3 — วัคซีนโรต้า ครั้งที่ 3',note:'ให้เฉพาะกรณีชนิดวัคซีนที่กำหนด 3 ครั้ง และต้องอยู่ในช่วงอายุที่อนุญาต',conditional:true},
+{m:9,age:'9 เดือน',name:'MMR1 — หัด คางทูม หัดเยอรมัน ครั้งที่ 1',note:''},
+{m:12,age:'1 ปี',name:'LAJE1 — วัคซีนไข้สมองอักเสบเจอชนิดเชื้อเป็นอ่อนฤทธิ์ ครั้งที่ 1',note:''},
+{m:18,age:'1 ปี 6 เดือน',name:'DTP4 — คอตีบ บาดทะยัก ไอกรน เข็มกระตุ้น',note:''},
+{m:18,age:'1 ปี 6 เดือน',name:'OPV4 — วัคซีนโปลิโอชนิดรับประทาน ครั้งที่ 4',note:''},
+{m:18,age:'1 ปี 6 เดือน',name:'MMR2 — หัด คางทูม หัดเยอรมัน ครั้งที่ 2',note:''},
+{m:30,age:'2 ปี 6 เดือน',name:'LAJE2 — วัคซีนไข้สมองอักเสบเจอชนิดเชื้อเป็นอ่อนฤทธิ์ ครั้งที่ 2',note:''},
+{m:48,age:'4 ปี',name:'DTP5 — คอตีบ บาดทะยัก ไอกรน เข็มกระตุ้น',note:'หากได้รับ DTP4 เมื่ออายุ 4 ปีขึ้นไป อาจไม่จำเป็นต้องได้รับครั้งที่ 5 ให้เจ้าหน้าที่ตรวจสอบ'},
+{m:48,age:'4 ปี',name:'OPV5 — วัคซีนโปลิโอชนิดรับประทาน ครั้งที่ 5',note:'หากได้รับ OPV4 เมื่ออายุ 4 ปีขึ้นไป อาจไม่จำเป็นต้องได้รับครั้งที่ 5 ให้เจ้าหน้าที่ตรวจสอบ'},
+{m:48,age:'4 ปี',name:'MMR — หัด คางทูม หัดเยอรมัน',note:'ตรวจสอบประวัติและความครบถ้วนกับเจ้าหน้าที่'},
+];
+$('birth').max=iso(new Date());$('asof').value=iso(new Date());
+$('calculate').addEventListener('click',()=>{
+ const birth=parse($('birth').value),asof=parse($('asof').value);if(!birth){alert('กรุณาเลือกวันเกิดของลูก');return}if(!asof){alert('กรุณาเลือกวันที่ต้องการคำนวณ');return}if(birth>asof){alert('วันเกิดต้องไม่อยู่หลังวันที่คำนวณ');return}
+ $('birthLabel').textContent='วันเกิด: '+thaiDate(birth);$('ageLabel').textContent='อายุ ณ วันที่ '+thaiDate(asof)+' : '+diffAge(birth,asof);
+ const rows=schedule.map(v=>({...v,date:addMonths(birth,v.m)}));let past=0,future=0;
+ $('list').innerHTML=rows.map(v=>{let status,cls;if(v.date<asof){status='วันตามเกณฑ์ผ่านแล้ว';cls='past';past++}else if(iso(v.date)===iso(asof)){status='ตรงกับวันที่คำนวณ';cls='today';future++}else{status='นัดในอนาคต';cls='future';future++}return `<article class="vaccine"><div class="v-top"><div><h3>${v.name}</h3><p><b>อายุตามกำหนด:</b> ${v.age}</p>${v.note?`<p>${v.note}</p>`:''}${v.conditional?'<span class="tag due">ต้องตรวจสอบข้อบ่งชี้</span>':''}</div><div class="date">${thaiDate(v.date)}<br><span class="tag ${cls}">${status}</span></div></div></article>`}).join('');
+ $('countAll').textContent=rows.length;$('countPast').textContent=past;$('countFuture').textContent=future;$('results').classList.remove('hidden');$('results').scrollIntoView({behavior:'smooth'});
+});
+$('print').addEventListener('click',()=>window.print());$('reset').addEventListener('click',()=>{$('birth').value='';$('results').classList.add('hidden');window.scrollTo({top:0,behavior:'smooth'})});
+</script></body></html>
