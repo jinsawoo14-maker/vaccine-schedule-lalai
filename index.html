@@ -18,10 +18,14 @@ main{width:min(900px,calc(100% - 28px));margin:0 auto 40px}.panel{background:#ff
 <main>
 <section class="panel entry">
 <h2>🗓️ วันเกิดของลูก</h2>
-<div class="fields"><div class="field"><label for="birth">เลือกวันเดือนปีเกิด</label><input id="birth" type="date" max=""></div><div class="field"><label for="asof">คำนวณสถานะ ณ วันที่</label><input id="asof" type="date"></div></div>
+<div class="fields">
+<div class="field"><label for="birthDay">วัน</label><select id="birthDay"><option value="">เลือกวัน</option></select></div>
+<div class="field"><label for="birthMonth">เดือน</label><select id="birthMonth"><option value="">เลือกเดือน</option><option value="1">มกราคม</option><option value="2">กุมภาพันธ์</option><option value="3">มีนาคม</option><option value="4">เมษายน</option><option value="5">พฤษภาคม</option><option value="6">มิถุนายน</option><option value="7">กรกฎาคม</option><option value="8">สิงหาคม</option><option value="9">กันยายน</option><option value="10">ตุลาคม</option><option value="11">พฤศจิกายน</option><option value="12">ธันวาคม</option></select></div>
+<div class="field year"><label for="birthYear">ปี พ.ศ.</label><select id="birthYear"><option value="">เลือกปี พ.ศ.</option></select></div>
+</div>
 <button class="primary" id="calculate">ดูตารางนัดวัคซีน 💉</button>
-<p class="hint">ระบบใช้วันเกิดเพื่อคำนวณวันนัดเท่านั้น ข้อมูลจะอยู่ในหน้าจอนี้ชั่วคราว และไม่ส่งไปเก็บที่เซิร์ฟเวอร์ สถานะวันที่ผ่านแล้วไม่ได้แปลว่าเด็กขาดวัคซีน เพราะระบบไม่ได้เก็บประวัติการฉีด</p>
-<div class="notice">⚠️ ตารางนี้เป็นตัวช่วยคำนวณตามกำหนดการวัคซีนพื้นฐานปี 2569 ไม่ใช่การยืนยันว่าเด็กควรได้รับวัคซีนทุกชนิดในวันดังกล่าว ต้องตรวจสอบสมุดวัคซีน ประวัติการได้รับวัคซีน สุขภาพเด็ก และข้อบ่งชี้เฉพาะรายกับเจ้าหน้าที่ก่อนฉีดเสมอ</div>
+<p class="hint">ระบบใช้วันเกิดเพื่อคำนวณวันนัดเท่านั้น ไม่ถามชื่อเด็ก ไม่บันทึกข้อมูลลงฐานข้อมูล และไม่ส่งวันเกิดไปยังเซิร์ฟเวอร์</p>
+<div class="notice">⚠️ ตารางนี้เป็นเครื่องมือช่วยคำนวณตามแผนงานวัคซีนพื้นฐานปี 2569 ไม่ใช่คำสั่งฉีดวัคซีนเฉพาะบุคคล ต้องตรวจสมุดวัคซีน ประวัติการได้รับวัคซีน สุขภาพ และข้อบ่งชี้กับเจ้าหน้าที่ก่อนรับวัคซีนทุกครั้ง</div>
 </section>
 <section class="panel hidden" id="results" aria-live="polite">
 <div class="result-head"><div><h2>📋 ตารางนัดวัคซีน</h2><div class="age" id="birthLabel"></div><div class="age" id="ageLabel"></div></div><div class="actions"><button class="secondary" id="print">พิมพ์ / บันทึก PDF</button><button class="secondary" id="reset">คำนวณใหม่</button></div></div>
