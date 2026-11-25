@@ -33,12 +33,12 @@ main{width:min(900px,calc(100% - 28px));margin:0 auto 40px}.panel{background:#ff
 <div class="vaccine-list" id="list"></div>
 <div class="notice">หมายเหตุ: วันตามเกณฑ์ที่ผ่านไปไม่ได้แปลว่าเด็กขาดวัคซีน หากเลยกำหนดหรือไม่แน่ใจว่าได้รับเข็มใดแล้ว ให้นำสมุดบันทึกสุขภาพแม่และเด็ก (สมุดสีชมพู) ไปให้เจ้าหน้าที่ประเมิน ไม่ควรเริ่มฉีดซ้ำหรือข้ามเข็มเอง</div>
 </section>
-<section class="panel search-panel"><h2>🔎 ค้นหาวัคซีนตามช่วงอายุ</h2><p class="section-sub">ค้นหาด้วยชื่อวัคซีนหรือเลือกช่วงอายุที่ต้องการดู</p><div class="filterbar"><input class="searchbox" id="searchInput" type="search" placeholder="ค้นหา เช่น โปลิโอ, MMR, โรต้า"><select class="searchbox" id="ageFilter"><option value="all">ทุกช่วงอายุ</option><option value="0">แรกเกิด</option><option value="1">1 เดือน</option><option value="2">2 เดือน</option><option value="4">4 เดือน</option><option value="6">6 เดือน</option><option value="9">9 เดือน</option><option value="12">1 ปี</option><option value="18">1 ปี 6 เดือน</option><option value="30">2 ปี 6 เดือน</option><option value="48">4 ปี</option></select></div><div class="vaccine-list" id="searchResults"><div class="empty">เลือกช่วงอายุหรือพิมพ์ชื่อวัคซีนเพื่อค้นหา</div></div></section>
+</section>
 <section class="panel knowledge-panel"><h2>📚 ความรู้สำหรับผู้ปกครอง</h2><div class="tabs"><button class="tab active" data-tab="before">🎒 ก่อนฉีด</button><button class="tab" data-tab="after">🏠 หลังฉีด</button><button class="tab" data-tab="warning">🌡️ อาการที่ควรระวัง</button></div>
 <div class="knowledge" id="knowledgeContent"><h3>เตรียมตัวก่อนพาลูกมารับวัคซีน</h3><ul><li>นำสมุดบันทึกสุขภาพแม่และเด็ก (สมุดสีชมพู) มาทุกครั้ง</li><li>แจ้งเจ้าหน้าที่หากเด็กเคยแพ้วัคซีนหรือส่วนประกอบของวัคซีน มีโรคประจำตัว ภูมิคุ้มกันบกพร่อง หรือเคยมีอาการผิดปกติหลังฉีดวัคซีน</li><li>แจ้งประวัติการได้รับวัคซีนจากสถานพยาบาลอื่นให้ครบถ้วน</li><li>หากเด็กกำลังมีไข้หรือเจ็บป่วย ควรแจ้งเจ้าหน้าที่เพื่อประเมินก่อนฉีด ไม่ควรตัดสินใจเลื่อนหรือฉีดเอง</li><li>ให้เด็กพักผ่อนและรับประทานอาหารหรือนมตามวัยตามปกติ</li></ul></div>
 </section>
 </main>
-<div class="footer">ข้อมูลกำหนดการวัคซีนพื้นฐาน: กรมควบคุมโรค กระทรวงสาธารณสุข ปี 2569<br>ข้อมูล PCV เพิ่มเติมตามประกาศกรมควบคุมโรค 7 พฤศจิกายน 2569<br>เว็บไซต์ รพ.สต.ละลาย · เวอร์ชัน 2.0<br><span class="no-print">กรุณานำสมุดประจำตัวสีชมพูเด็กและบัตรประชาชนของผู้แกครองมาด้วยทุกครั้ง</span></div>
+<div class="footer">ข้อมูลกำหนดการวัคซีนพื้นฐาน: กรมควบคุมโรค กระทรวงสาธารณสุข ปี 2569<br>ข้อมูล PCV เพิ่มเติมตามประกาศกรมควบคุมโรค 7 พฤศจิกายน 2569<br>เว็บไซต์ รพ.สต.ละลาย · เวอร์ชัน 2.0<br><span class="no-print"></div>
 <script>
 const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,'0');
 const today=new Date();today.setHours(12,0,0,0);
